@@ -62,7 +62,7 @@ public class Main {
 
             while (low <= high) {
                 steps++;
-                int mid = (low + high) / 2; // Menentukan posisi tengah
+                int mid = (low + high) / 2; 
 
                 if (weights[mid] == target) {
                     System.out.println(target + ": FOUND at index " + mid + " (steps: " + steps + ")");

@@ -3,17 +3,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Membaca file input parcels.txt menggunakan Scanner dari resource stream
         Scanner z = new Scanner(Main.class.getResourceAsStream("parcels.txt"));
 
-        // 1. Membaca jumlah parcel (N) dan data bobot parcel
         int n = z.nextInt();
         int[] weights = new int[n];
         for (int i = 0; i < n; i++) {
             weights[i] = z.nextInt();
         }
 
-        // 2. Membaca jumlah target (M) dan data target bobot
         int targetAmount = z.nextInt();
         int[] targets = new int[targetAmount];
         for (int i = 0; i < targetAmount; i++) {
@@ -21,10 +18,8 @@ public class Main {
         }
         z.close();
 
-        // Array untuk menyimpan kondisi rak setelah tepat 2 pass
         int[] after2Passes = new int[n];
 
-        // 3. Proses Pengurutan: Bubble Sort Descending
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - 1 - i; j++) {
                 if (weights[j] < weights[j + 1]) {
@@ -33,7 +28,6 @@ public class Main {
                     weights[j + 1] = temp;
                 }
             }
-            // Simpan salinan kondisi array setelah pass ke-2 (i == 1)
             if (i == 1) {
                 for (int k = 0; k < n; k++) {
                     after2Passes[k] = weights[k];
@@ -41,28 +35,24 @@ public class Main {
             }
         }
 
-        // Penanganan kondisi jika N <= 2
         if (n <= 2) {
             for (int k = 0; k < n; k++) {
                 after2Passes[k] = weights[k];
             }
         }
 
-        // 4. Menampilkan kondisi setelah 2 pass
         System.out.println("==== After 2 Passes ====");
         for (int i = 0; i < n; i++) {
             System.out.print(after2Passes[i] + (i == n - 1 ? "" : " "));
         }
         System.out.println();
 
-        // 5. Menampilkan kondisi terurut sempurna (Fully Sorted)
         System.out.println("==== Fully Sorted ====");
         for (int i = 0; i < n; i++) {
             System.out.print(weights[i] + (i == n - 1 ? "" : " "));
         }
         System.out.println();
 
-        // 6. Proses Pencarian: Binary Search pada Array Terurut Descending
         System.out.println("==== Search Results ====");
         for (int target : targets) {
             int low = 0;
@@ -79,10 +69,8 @@ public class Main {
                     found = true;
                     break;
                 } else if (weights[mid] < target) {
-                    // Karena array descending, nilai yang lebih besar berada di sebelah kiri
                     high = mid - 1;
                 } else {
-                    // Nilai yang lebih kecil berada di sebelah kanan
                     low = mid + 1;
                 }
             }

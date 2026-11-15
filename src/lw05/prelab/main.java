@@ -111,32 +111,32 @@ class Main {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(Main.class.getResourceAsStream("campus.txt"));
+        Scanner zn = new Scanner(Main.class.getResourceAsStream("campus.txt"));
 
-        if (!scanner.hasNextInt()) {
-            scanner.close();
+        if (!zn.hasNextInt()) {
+            zn.close();
             return;
         }
 
-        size = scanner.nextInt();
+        size = zn.nextInt();
         names = new String[size];
         for (int i = 0; i < size; i++) {
-            names[i] = scanner.next();
+            names[i] = zn.next();
         }
 
         graph = new int[size][size];
 
-        int edgesCount = scanner.nextInt();
+        int edgesCount = zn.nextInt();
         for (int i = 0; i < edgesCount; i++) {
-            int v1 = scanner.nextInt();
-            int v2 = scanner.nextInt();
-            int minutes = scanner.nextInt();
+            int v1 = zn.nextInt();
+            int v2 = zn.nextInt();
+            int minutes = zn.nextInt();
             addEdge(v1, v2, minutes);
         }
 
-        int start = scanner.nextInt();
-        int destination = scanner.nextInt();
-        scanner.close();
+        int start = zn.nextInt();
+        int destination = zn.nextInt();
+        zn.close();
 
         System.out.println("=== BFS from " + names[start] + " ===");
         printPath(bfs(start));

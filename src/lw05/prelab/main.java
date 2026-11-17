@@ -111,7 +111,6 @@ class Main {
     }
 
     public static void main(String[] args) {
-        // Write the main method yourself
         Scanner znScanner = new Scanner(Main.class.getResourceAsStream("campus.txt"));
         size = znScanner.nextInt();
         names = new String[size];

@@ -1,5 +1,4 @@
 package lw06.prelab;
-
 import java.util.Scanner;
 
 public class Main {
@@ -9,9 +8,9 @@ public class Main {
             return new Node(data);
         }
 
-        if (data < root.data) {
+        if (root.data > data) {
             root.left = insert(root.left, data);
-        } else if (data > root.data) {
+        } else if (root.data < data) {
             root.right = insert(root.right, data);
         }
 
@@ -25,7 +24,7 @@ public class Main {
 
         if (root.data == target) {
             return true;
-        } else if (target < root.data) {
+        } else if (root.data > target) {
             return search(root.left, target);
         } else {
             return search(root.right, target);
@@ -57,22 +56,21 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(Main.class.getResourceAsStream("treenumbers.txt"));
+        Scanner zn = new Scanner(Main.class.getResourceAsStream("treenumbers.txt"));
 
         Node root = null;
-        if (sc.hasNextLine()) {
-            String[] tokens = sc.nextLine().trim().split("\\s+");
+        if (zn.hasNextLine()) {
+            String[] tokens = zn.nextLine().split("\\s+");
             for (String token : tokens) {
                 if (!token.isEmpty()) {
-                    int value = Integer.parseInt(token);
-                    root = insert(root, value);
+                    root = insert(root, Integer.parseInt(token));
                 }
             }
         }
 
         int target = 0;
-        if (sc.hasNextLine()) {
-            target = Integer.parseInt(sc.nextLine().trim());
+        if (zn.hasNextLine()) {
+            target = Integer.parseInt(zn.nextLine().split("\\s+")[0]);
         }
 
         System.out.print("Preorder : ");
@@ -89,6 +87,6 @@ public class Main {
 
         System.out.println("Search " + target + " : " + search(root, target));
 
-        sc.close();
+        zn.close();
     }
 }
